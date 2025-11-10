@@ -17,9 +17,10 @@ export default function SidebarLayout({
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    if (stored) setTheme(stored);
+    if (stored) {
+      requestAnimationFrame(() => setTheme(stored));
+    }
   }, []);
-
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "night");
     localStorage.setItem("theme", theme);
@@ -55,7 +56,7 @@ useEffect(() => {
       img: isDay ? randomPetal : randomSnow,
     };
   });
-  setFlakes(items);
+  requestAnimationFrame(() => setFlakes(items));
 }, [isDay]);
 
   return (

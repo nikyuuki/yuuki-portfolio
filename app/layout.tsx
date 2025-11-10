@@ -5,9 +5,6 @@ import TopNavbarLayout from "./topnavbar";
 import AOSInitializer from "./AOSInitializer";
 import FireflyCursor from "./components/FireflyCursor";
 
-// ✨ Remove Geist completely (force default browser fonts)
-export const dynamic = "force-dynamic";
-
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
