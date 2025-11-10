@@ -1,8 +1,11 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    optimizePackageImports: ["geist"], // disable automatic Geist injection
-    // or if you see this line already, just remove "geist"
+  output: 'export', // 🧁 this makes it static (for GitHub Pages)
+  images: {
+    unoptimized: true, // ❄️ important since GitHub Pages doesn't do image optimization
   },
+  basePath: '/yuuki-portfolio', // 🪷 change this to your repo name
+  assetPrefix: '/yuuki-portfolio/',
 };
 
-export default nextConfig;
+module.exports = nextConfig;

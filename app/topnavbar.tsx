@@ -15,8 +15,11 @@ export default function TopNavbarLayout({ children }: { children: React.ReactNod
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    if (stored) setTheme(stored);
+    if (stored) {
+      setTimeout(() => setTheme(stored), 0);
+    }
   }, []);
+
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "night");
@@ -56,9 +59,8 @@ export default function TopNavbarLayout({ children }: { children: React.ReactNod
         img: isDay ? randomPetal : randomSnow,
       };
     });
-    setFlakes(items);
+    requestAnimationFrame(() => setFlakes(items));
   }, [isDay]);
-
 return (
   <div
     className={`relative min-h-screen overflow-hidden transition-all duration-700 ${
