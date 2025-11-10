@@ -1,0 +1,49 @@
+import type { Metadata } from "next";
+import { Poppins, Quicksand, Playfair_Display } from "next/font/google";
+import "./globals.css";
+import TopNavbarLayout from "./topnavbar";
+import AOSInitializer from "./AOSInitializer";
+import FireflyCursor from "./components/FireflyCursor";
+
+// ✨ Remove Geist completely (force default browser fonts)
+export const dynamic = "force-dynamic";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-poppins",
+});
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-quicksand",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-playfair",
+});
+
+export const metadata: Metadata = {
+  title: "Nik Alyaa Portfolio",
+  description: "A dreamy portfolio full of magic ✨",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        style={{
+          fontFamily: "var(--font-poppins), sans-serif",
+        }}
+        className={`${poppins.variable} ${quicksand.variable} ${playfair.variable} antialiased !font-sans`}
+      >
+        <AOSInitializer />
+        <FireflyCursor />
+        <TopNavbarLayout>{children}</TopNavbarLayout>
+      </body>
+    </html>
+  );
+}

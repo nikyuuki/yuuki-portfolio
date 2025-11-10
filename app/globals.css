@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-body: var(--font-poppins);
+  --font-subtitle: var(--font-quicksand);
+  --font-heading: var(--font-playfair);
+}
+
+/* ✨ Base fonts */
+body {
+  font-family: var(--font-body), sans-serif;
+}
+
+@layer base {
+  /* 🌼 Force all body text to Poppins */
+  body, p, span, li, button, input, textarea {
+    font-family: var(--font-body), sans-serif !important;
+  }
+
+  /* 🌸 Headings — Playfair Display */
+  h1, h2 {
+    font-family: var(--font-heading), serif !important;
+    font-weight: 700 !important;
+  }
+
+  /* 💕 Subtitles and medium headers — Quicksand */
+  h3, h4, h5, h6 {
+    font-family: var(--font-subtitle), sans-serif !important;
+    font-weight: 600 !important;
+  }
+}
+
+
+/* 🌼 Normal Text (Poppins) */
+body, p, li, span, button, input, textarea {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 400;
+}
+
+
+/* 🌷 Fancy Header Font (like your name NIK ALYAA) */
+.header-fancy {
+  font-family: "Playfair Display", var(--font-playfair), serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+/* 💫 Glow effect on hover */
+.header-fancy:hover {
+  text-shadow: 0 0 10px rgba(255,182,193,0.6), 0 0 20px rgba(255,192,203,0.3);
+  transform: scale(1.02);
+}
+
+
+.dark {
+  color-scheme: dark;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+.animate-fall {
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+html, body {
+  overflow-x: hidden;
+
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+.fill-gradient-night {
+  fill: url(#nightWaveGradient);
+}
+
+svg defs {
+  pointer-events: none;
+}
+@keyframes sway {
+  0%, 100% { transform: translateY(5px) rotate(0deg); }
+  50% { transform: translateY(7px) rotate(-1.5deg); }
+}
+
+.tree-sway {
+  animation: sway 6s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+.animate-floaty {
+  animation: floaty 2s ease-in-out infinite;
+}
+
+/* 🌸 Box White Style */
+.box-white {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden; /* ⛓️ keep content inside */
+  max-width: 100%; /* ✨ responsive safe */
+}
+
+.dark .box-white {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ✨ Writing animation (fixed for multi-line support) */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes wordwriter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typewriter {
+  display: inline-block;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid #ffb6c1;
+  animation: blink 0.8s step-end infinite;
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.8;
+  padding-right: 4px;
+}
+
+.dark .typewriter {
+  border-right: 3px solid #80bfff;
+}
+
+/* 🌸 Each word appears one after another */
+.typewriter span {
+  opacity: 0;
+  display: inline-block;
+  animation: wordwriter 0.3s forwards;
+}
+
+/* ✨ Fade-in animation for each list item */
+@keyframes fadeInTyping {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.typing-item {
+  animation: fadeInTyping 0.4s ease forwards;
+}
+
+/* 🌸 Soft pulse for the text (optional, looks magical!) */
+.typing-item::marker {
+  color: #f472b6; /* pink-400 bullet for day */
+}
+
+.dark .typing-item::marker {
+  color: #60a5fa; /* blue-400 bullet for night */
+}
+
+/* 🌸 Global H3 Style — sparkly subtitle effect */
+h3 {
+  font-size: 1.5rem; /* same as text-2xl */
+  font-weight: 600;
+  color: #ec4899; /* pink-600 for day */
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  cursor: default;
+}
+
+/* ✨ Hover zoom + glow effect */
+h3:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 8px rgba(255, 182, 193, 0.7),
+               0 0 15px rgba(255, 192, 203, 0.4);
+}
+
+/* 🌙 Night mode glow */
+.dark h3 {
+  color: #93c5fd; /* blue-300 */
+}
+
+.dark h3:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 8px rgba(147, 197, 253, 0.8),
+               0 0 16px rgba(147, 197, 253, 0.5);
+}
+
+/* 🩷 Optional underline animation when hover */
+h3::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, #f9a8d4, #93c5fd);
+  border-radius: 2px;
+  transition: width 0.3s ease-in-out;
+}
+
+h3:hover::after {
+  width: 100%;
+}
+
+/* 🌷 Global Title Styling (h1 & h2) */
+h1,
+h2 {
+  @apply font-extrabold tracking-wide transition-all duration-500 text-center;
+}
+
+/* 🌸 Day mode base style */
+h1,
+h2 {
+  color: #ec4899; /* pink-500 */
+  text-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
+}
+
+/* ❄️ Night mode base style */
+.dark h1,
+.dark h2 {
+  color: #bfdbfe; /* blue-200 */
+  text-shadow: 0 0 6px rgba(147, 197, 253, 0.3);
+}
+
+/* 💖 Hover glow effect (shared by h1 & h2) */
+h1:hover,
+h2:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 12px rgba(255, 182, 193, 0.7), 0 0 24px rgba(255, 192, 203, 0.5);
+}
+
+/* 🌙 Night mode hover */
+.dark h1:hover,
+.dark h2:hover {
+  text-shadow: 0 0 14px rgba(147, 197, 253, 0.7), 0 0 28px rgba(180, 200, 255, 0.5);
+}
