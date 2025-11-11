@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { imageBasePath } from "./layout";
+import { imageBasePath } from "./lib/config";
 
 export default function HomePage() {
   return (
@@ -122,7 +122,7 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project-preview1.png`}
+            src={`${imageBasePath}/project1-preview.png`}
             alt="Lokalities Food System preview"
             width={400}
             height={250}
@@ -144,7 +144,7 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project-preview2.png`}
+            src={`${imageBasePath}/project2-preview.png`}
             alt="My Rider ID preview"
             width={400}
             height={250}
@@ -165,7 +165,7 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project-preview3.png`}
+            src={`${imageBasePath}/project3-preview.png`}
             alt="Portfolio Website preview"
             width={400}
             height={250}

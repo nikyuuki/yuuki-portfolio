@@ -5,9 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const imageBasePath =
-  process.env.NODE_ENV === "production" ? "/yuuki-portfolio" : "";
+import { imageBasePath } from "./lib/config";
 
 
 export default function TopNavbarLayout({ children }: { children: React.ReactNode }) {

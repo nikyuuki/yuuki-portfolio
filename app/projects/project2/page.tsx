@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
@@ -70,12 +71,12 @@ function TypewriterList({ items }: { items: string[] }) {
 
 
 export default function Project1Page() {
- const images = [
-  "/project3-preview.png",
-  "/project3-1.png",
-  "/project3-2.png",
-  "/project3-3.png",
-  "/project3-4.png",
+  const images = [
+    `${imageBasePath}/project2-preview.png`,
+    `${imageBasePath}/project2-1.png`,
+    `${imageBasePath}/project2-2.png`,
+    `${imageBasePath}/project2-3.png`,
+    `${imageBasePath}/project2-4.png`,
 ];
 
 const [currentIndex, setCurrentIndex] = useState(0);

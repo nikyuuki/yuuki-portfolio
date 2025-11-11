@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code, Palette, Heart, Briefcase, Sparkles } from "lucide-react";
+import { imageBasePath } from "../lib/config";
 
 export default function AboutPage() {
   return (
@@ -16,7 +17,7 @@ export default function AboutPage() {
         {/* 🖼️ Profile Image */}
         <div className="relative flex-shrink-0 w-56 h-72 md:w-64 md:h-80 rounded-3xl overflow-hidden shadow-xl ring-4 ring-pink-300 dark:ring-blue-400 hover:scale-[1.02] transition-transform duration-500">
           <img
-            src="/yuuki.svg"
+            src={`${imageBasePath}/yuuki.svg`}
             alt="Nik Alyaa portrait"
             className="object-cover w-full h-full rounded-3xl"
           />

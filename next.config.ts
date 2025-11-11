@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
-  output: 'export', // ✅ for static site
+  output: 'export',
   images: {
-    unoptimized: true, // ✅ important for GitHub Pages
+    unoptimized: true,
   },
-  basePath: '/yuuki-portfolio', // ✅ your repo name
-  assetPrefix: '/yuuki-portfolio/', // ✅ needed for CSS/JS
+  basePath: isProd ? '/yuuki-portfolio' : '',
+  assetPrefix: isProd ? '/yuuki-portfolio/' : '',
 };
 
 module.exports = nextConfig;
