@@ -28,6 +28,10 @@ export const metadata: Metadata = {
   description: "A dreamy portfolio full of magic ✨",
 };
 
+export const imageBasePath =
+  process.env.NODE_ENV === "production" ? "/yuuki-portfolio" : "";
+
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>

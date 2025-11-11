@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { imageBasePath } from "./layout";
 
 export default function HomePage() {
   return (
@@ -12,7 +13,7 @@ export default function HomePage() {
         <div className="relative">
           <div className="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-[5px] border-pink-400 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,182,193,0.6)]">
             <Image
-              src="/yuuki.svg"
+              src={`${imageBasePath}/yuuki.svg`}
               alt="Nik Alyaa portrait"
               width={100}
               height={100}
@@ -121,7 +122,7 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src="/project1-preview.png"
+            src={`${imageBasePath}/project-preview1.png`}
             alt="Lokalities Food System preview"
             width={400}
             height={250}
@@ -143,7 +144,7 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src="/project2-preview.png"
+            src={`${imageBasePath}/project-preview2.png`}
             alt="My Rider ID preview"
             width={400}
             height={250}
@@ -164,7 +165,7 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src="/project3-preview.png"
+            src={`${imageBasePath}/project-preview3.png`}
             alt="Portfolio Website preview"
             width={400}
             height={250}

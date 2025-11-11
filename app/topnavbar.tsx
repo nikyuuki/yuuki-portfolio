@@ -6,6 +6,10 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const imageBasePath =
+  process.env.NODE_ENV === "production" ? "/yuuki-portfolio" : "";
+
+
 export default function TopNavbarLayout({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState("day");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,8 +52,14 @@ export default function TopNavbarLayout({ children }: { children: React.ReactNod
 
   useEffect(() => {
     const items = [...Array(25)].map(() => {
-      const randomPetal = Math.random() < 0.5 ? "/sakura1.svg" : "/sakura2.svg";
-      const randomSnow = Math.random() < 0.5 ? "/snow1.svg" : "/snow2.svg";
+      const randomPetal =
+        Math.random() < 0.5
+          ? `${imageBasePath}/sakura1.svg`
+          : `${imageBasePath}/sakura2.svg`;
+      const randomSnow =
+        Math.random() < 0.5
+          ? `${imageBasePath}/snow1.svg`
+          : `${imageBasePath}/snow2.svg`;
       return {
         left: Math.random() * 100,
         duration: 6 + Math.random() * 6,
@@ -119,7 +129,7 @@ return (
 
         {/* 🌲 Trees */}
         <img
-          src="/tree-left.svg"
+          src={`${imageBasePath}/tree-left.svg`}
           alt="Left tree"
           className="absolute bottom-[-5px] left-[-30px] h-48 md:h-60 lg:h-72 xl:h-80 pointer-events-none select-none drop-shadow-lg transition-all duration-700"
           style={{
@@ -129,7 +139,7 @@ return (
           }}
         />
         <img
-          src="/tree-right.svg"
+          src={`${imageBasePath}/tree-right.svg`}
           alt="Right tree"
           className="absolute bottom-[-5px] right-[-30px] h-48 md:h-60 lg:h-72 xl:h-80 pointer-events-none select-none drop-shadow-lg transition-all duration-700"
           style={{
