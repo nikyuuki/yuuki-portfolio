@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import { Poppins, Quicksand, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import TopNavbarLayout from "./topnavbar";
 import AOSInitializer from "./AOSInitializer";
 import FireflyCursor from "./components/FireflyCursor";
+import type { Metadata } from "next";
 
 const poppins = Poppins({
   subsets: ["latin"],
