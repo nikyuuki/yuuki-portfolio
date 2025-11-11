@@ -4,8 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/yuuki-portfolio',
-  assetPrefix: '/yuuki-portfolio/',
   eslint: {
     ignoreDuringBuilds: true, // 💖 ignore safe warnings
   },
