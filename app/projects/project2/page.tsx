@@ -80,6 +80,14 @@ export default function Project1Page() {
 ];
 
 const [currentIndex, setCurrentIndex] = useState(0);
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, 5000);
+
+  return () => clearInterval(timer);
+}, [images.length]);
+
 const [zoomed, setZoomed] = useState(false);
 
 const nextImage = () => {
@@ -103,7 +111,7 @@ const prevImage = () => {
         </Link>
         <span className="mx-1 text-gray-400">«</span>
         <span className="font-semibold text-gray-900 dark:text-gray-100">
-          Lokalities Food System
+          MyRiderID System
         </span>
       </div>
 
@@ -121,10 +129,10 @@ const prevImage = () => {
         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
           {/* 🌸 Title */}
           <h1 className="text-2xl md:text-3xl font-bold text-pink-600 dark:text-blue-200 drop-shadow-sm">
-            🌸 Lokalities Food System
+            🌸 MyRiderID System
           </h1>
           <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-1 text-center md:text-left">
-            A Ruby on Rails-based kiosk management system
+            A Ruby on Rails-based QR Rider Management system
           </p>
         </div>
 
@@ -137,91 +145,107 @@ const prevImage = () => {
       <div className="text-center pt-3 space-y-4">
                {/* ✨ Quote */}
         <blockquote className="mt-6  text-lg md:text-xl italic font-medium text-gray-700 dark:text-gray-300 border-l-4 border-pink-400 dark:border-blue-400 pl-4 md:pl-6 max-w-3xl">
-          A centralized kiosk management platform built with Ruby on Rails,
-          focusing on utility and product tracking to empower small business owners.
+          A centralized rider management for emergency that utilise QR to show the rider information, emergency contact
+          and health information in case of accident or lose of the helmet that have the QR.
         </blockquote>
       </div>
 
-{/* 🪞 Project Image Slider (Dynamic Height & Blur Fill) */}
-<div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
-  <motion.div
-    key={currentIndex}
-    initial={{ opacity: 0, scale: 0.96 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.6 }}
-    className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
-    style={{
-      height: "min(70vh, 600px)", // 💕 responsive tall area
-    }}
-  >
-    {/* Blurred background for portrait filling */}
-    <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
-      <Image
-        src={images[currentIndex]}
-        alt={`Background ${currentIndex + 1}`}
-        fill
-        sizes="(max-width: 768px) 100vw, 800px"
-        className="object-cover"
-      />
-    </div>
+      {/* 🪞 Project Image Slider */}
+      <div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
 
-    {/* Real image centered and preserved ratio */}
-    <div className="relative z-10 w-full h-full flex items-center justify-center">
-      <Image
-        src={images[currentIndex]}
-        alt={`Screenshot ${currentIndex + 1}`}
-        width={800}
-        height={1000}
-        onClick={() => setZoomed(true)}
-        className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
-      />
-    </div>
-  </motion.div>
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
+          style={{ height: "min(70vh, 600px)" }}
+        >
 
-      {/* Navigation buttons */}
+          {/* Blurred background */}
+          <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
+            <Image
+              src={images[currentIndex]}
+              alt={`Background ${currentIndex + 1}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Main image */}
+          <div className="relative z-10 w-full h-full flex items-center justify-center">
+            <Image
+              src={images[currentIndex]}
+              alt={`Screenshot ${currentIndex + 1}`}
+              width={800}
+              height={1000}
+              onClick={() => setZoomed(true)}
+              className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+        </motion.div>
+
+      {/* Prev */}
       <button
-        onClick={prevImage}
-        className="absolute left-2 sm:left-0 md:-left-10 top-1/2 -translate-y-1/2 bg-white/60 dark:bg-blue-950/60
-                  text-gray-700 dark:text-gray-200 rounded-full w-10 h-10 flex items-center justify-center
-                  hover:scale-110 transition backdrop-blur-md shadow"
+        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+        className="psp-arrow psp-left"
       >
         ‹
       </button>
+
+      {/* Next */}
       <button
-        onClick={nextImage}
-        className="absolute right-2 sm:right-0 md:-right-10 top-1/2 -translate-y-1/2 bg-white/60 dark:bg-blue-950/60
-                  text-gray-700 dark:text-gray-200 rounded-full w-10 h-10 flex items-center justify-center
-                  hover:scale-110 transition backdrop-blur-md shadow"
+        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+        className="psp-arrow psp-right"
       >
         ›
       </button>
 
-        {/* Image counter */}
+        {/* Counter */}
         <div className="flex flex-col items-center mt-3">
-            <p className="text-[11px] text-pink-400 dark:text-blue-300 mt-1 animate-floaty">
+          <p className="text-[11px] text-pink-400 dark:text-blue-300 mt-1 animate-floaty">
             ✨ Click Picture to Zoom ✨
-            </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {currentIndex + 1} / {images.length}
-        </p>
+          </p>
         </div>
 
-      {/* Zoom modal */}
-      {zoomed && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-          onClick={() => setZoomed(false)}
-        >
-          <Image
-            src={images[currentIndex]}
-            alt="Zoomed image"
-            width={1200}
-            height={1600}
-            className="object-contain max-h-[90vh] w-auto rounded-2xl shadow-2xl border border-pink-300/50 dark:border-blue-800/50 cursor-zoom-out"
+        {/* Dots Indicator */}
+      <div className="flex gap-2 mt-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`
+              w-3 h-3 rounded-full transition-all
+              ${index === currentIndex
+                ? "bg-pink-400 dark:bg-blue-300 scale-110 shadow-sm"
+                : "bg-pink-200 dark:bg-blue-900 opacity-60 hover:opacity-100"
+              }
+            `}
           />
-        </div>
-      )}
-    </div>
+        ))}
+      </div>
+
+
+        {/* Zoom modal */}
+        {zoomed && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            onClick={() => setZoomed(false)}
+          >
+            <Image
+              src={images[currentIndex]}
+              alt="Zoomed image"
+              width={1200}
+              height={1600}
+              className="object-contain max-h-[90vh] w-auto rounded-2xl shadow-2xl border border-pink-300/50 dark:border-blue-800/50 cursor-zoom-out"
+            />
+          </div>
+        )}
+      </div>
 
 
       {/* 📖 Details Section */}
@@ -229,7 +253,9 @@ const prevImage = () => {
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-                text="Lokalities Food System is a centralized kiosk management system that improves daily operations and product management. It provides a clean, intuitive dashboard with essential utilities, sales tracking, and stock monitoring. The goal is to support local businesses by bringing efficient tools with simple usability."
+                text="MyRiderID is a comprehensive rider management platform designed to enhance safety and efficiency for motorcycle riders.
+                Built with Ruby on Rails for the backend with Tailwind CSS for the frontend, this system offers a user-friendly dashboard for managing rider profiles.
+                The MyRiderID System aims to provide a reliable solution for rider identification and emergency response through QR code technology."
            />
         </div>
 
@@ -240,8 +266,7 @@ const prevImage = () => {
             items={[
               "Ruby on Rails (backend)",
               "PostgreSQL database",
-              "Next.js + Tailwind CSS (frontend)",
-              "Cloudinary for image storage",
+              "javascript + Tailwind CSS (frontend)",
             ]}
           />
         </div>
@@ -251,9 +276,9 @@ const prevImage = () => {
          <div className="box-white">
           <TypewriterList
             items={[
-              "Utility & product tracking dashboard",
-              "CRUD product management",
-              "Inventory alert notifications",
+              "Profile management dashboard",
+              "QR code generation for riders in admin panel",
+              "Emergency contact & health info storage",
               "Responsive & mobile-friendly design",
             ]}
           />
