@@ -8,12 +8,15 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
+
   const words = text
-  .replace(/\s+/g, " ")
-  .trim()
-  .split(" ");
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(" ");
 
   useEffect(() => {
+    setDisplayedWords([]);
+
     let i = 0;
     const interval = setInterval(() => {
       if (i < words.length) {
@@ -23,21 +26,21 @@ function TypewriterWords({ text }: { text: string }) {
         clearInterval(interval);
       }
     }, 250);
+
     return () => clearInterval(interval);
-  }, [words]);
+  }, [text]);
 
   return (
     <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">
       {displayedWords.map((word, index) => (
-        <span key={index} className="inline-block">
+        <span key={index}>
           {word}
-          {index < words.length - 1 && "\u00A0"}
+          {index < words.length - 1 && <>&nbsp;</>}
         </span>
       ))}
     </p>
   );
 }
-
 
 function TypewriterList({ items }: { items: string[] }) {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -53,7 +56,7 @@ function TypewriterList({ items }: { items: string[] }) {
       }
     }, 600);
     return () => clearInterval(interval);
-  }, [items]);
+  }, []);
 
   return (
     <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -71,7 +74,6 @@ function TypewriterList({ items }: { items: string[] }) {
     </ul>
   );
 }
-
 
 export default function Project1Page() {
   const images = [
@@ -257,9 +259,9 @@ const prevImage = () => {
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-                 text={`The Award Istiadat Management System is a Ruby on Rails-based website designed to streamline the management of award received by every awardee.
+                 text={`" The Award Istiadat Management System is a Ruby on Rails-based website designed to streamline the management of award received by every awardee.
                 It allows administrators to upload bulk awardee data via Excel files, preview the information, and make it publicly accessible. The system features a user-friendly
-                interface for managing award categories, nominees, and event details, ensuring a smooth and efficient process for public viewing.`}
+                interface for managing award categories, nominees, and event details, ensuring a smooth and efficient process for public viewing."`}
            />
         </div>
 

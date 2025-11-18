@@ -8,13 +8,16 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const words = text
-  .replace(/\s+/g, " ")
-  .trim()
-  .split(" ");
 
+  const cleaned = text
+    .replace(/^\s+/, "")        // remove ALL leading whitespace
+    .replace(/\n\s+/g, "\n");   // remove new line indentation
+
+  const words = cleaned.split(/\s+/).filter(Boolean);
 
   useEffect(() => {
+    setDisplayedWords([]);
+
     let i = 0;
     const interval = setInterval(() => {
       if (i < words.length) {
@@ -24,21 +27,16 @@ function TypewriterWords({ text }: { text: string }) {
         clearInterval(interval);
       }
     }, 250);
+
     return () => clearInterval(interval);
-  }, [words]);
+  }, [cleaned]);
 
   return (
-    <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">
-      {displayedWords.map((word, index) => (
-        <span key={index} className="inline-block">
-          {word}
-          {index < words.length - 1 && "\u00A0"}
-        </span>
-      ))}
+    <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed" style={{ whiteSpace: "pre-wrap" }}>
+      {displayedWords.join(" ")}
     </p>
   );
 }
-
 
 function TypewriterList({ items }: { items: string[] }) {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -54,7 +52,7 @@ function TypewriterList({ items }: { items: string[] }) {
       }
     }, 600);
     return () => clearInterval(interval);
-  }, [items]);
+  }, []);
 
   return (
     <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -72,7 +70,6 @@ function TypewriterList({ items }: { items: string[] }) {
     </ul>
   );
 }
-
 
 export default function Project1Page() {
   const images = [
@@ -257,12 +254,9 @@ const prevImage = () => {
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-             text={`
-                  MyRiderID is a comprehensive rider management platform designed to enhance safety and efficiency for motorcycle riders.
-                  Built with Ruby on Rails for the backend with Tailwind CSS...
-                  The MyRiderID System aims to provide a reliable solution...
-                  `}
-
+          text={`" MyRiderID is a comprehensive rider management platform designed to enhance safety and efficiency for motorcycle riders.
+                Built with Ruby on Rails for the backend with Tailwind CSS for the frontend, this system offers a user-friendly dashboard for managing rider profiles.
+                The MyRiderID System aims to provide a reliable solution for rider identification and emergency response through QR code technology."`}
            />
         </div>
 

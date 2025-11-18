@@ -8,12 +8,16 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const words = text
-  .replace(/\s+/g, " ")
-  .trim()
-  .split(" ");
+
+  const cleaned = text
+    .replace(/^\s+/, "")        // remove ALL leading whitespace
+    .replace(/\n\s+/g, "\n");   // remove new line indentation
+
+  const words = cleaned.split(/\s+/).filter(Boolean);
 
   useEffect(() => {
+    setDisplayedWords([]);
+
     let i = 0;
     const interval = setInterval(() => {
       if (i < words.length) {
@@ -23,21 +27,16 @@ function TypewriterWords({ text }: { text: string }) {
         clearInterval(interval);
       }
     }, 250);
+
     return () => clearInterval(interval);
-  }, [words]);
+  }, [cleaned]);
 
   return (
-    <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">
-      {displayedWords.map((word, index) => (
-        <span key={index} className="inline-block">
-          {word}
-          {index < words.length - 1 && "\u00A0"}
-        </span>
-      ))}
+    <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed" style={{ whiteSpace: "pre-wrap" }}>
+      {displayedWords.join(" ")}
     </p>
   );
 }
-
 
 function TypewriterList({ items }: { items: string[] }) {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -53,7 +52,7 @@ function TypewriterList({ items }: { items: string[] }) {
       }
     }, 600);
     return () => clearInterval(interval);
-  }, [items]);
+  }, []);
 
   return (
     <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -71,7 +70,6 @@ function TypewriterList({ items }: { items: string[] }) {
     </ul>
   );
 }
-
 
 export default function Project1Page() {
   const images = [
@@ -255,9 +253,11 @@ const [zoomed, setZoomed] = useState(false);
       <div className="backdrop-blur-md bg-white/40 dark:bg-white/10 rounded-2xl shadow-md border border-pink-200/30 dark:border-blue-800/30 p-8 space-y-5">
         <h3>📖 Project Overview</h3>
         <div className="box-white">
-          <TypewriterWords
-                 text={`Lokalities Food System is a centralized kiosk management system that improves daily operations and product management. It provides a clean, intuitive dashboard with essential utilities, sales tracking, and stock monitoring. The goal is to support local businesses by bringing efficient tools with simple usability.`}
-           />
+        <TypewriterWords
+          text={`" Lokalities Food System is a centralized kiosk management system that improves daily operations and product management.
+          It provides a clean, intuitive dashboard with essential utilities, sales tracking, and stock monitoring.
+          The goal is to support local businesses by bringing efficient tools with simple usability."`}
+                  />
         </div>
 
 
