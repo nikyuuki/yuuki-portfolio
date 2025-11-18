@@ -21,7 +21,7 @@ function TypewriterWords({ text }: { text: string }) {
       }
     }, 250);
     return () => clearInterval(interval);
-  }, []);
+  }, [words]);
 
   return (
     <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -133,10 +133,10 @@ const prevImage = () => {
         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
           {/* 🌸 Title */}
           <h1 className="text-2xl md:text-3xl font-bold text-pink-600 dark:text-blue-200 drop-shadow-sm">
-            🌸 My Portfolio Website
+            {`🌸 My Portfolio Website`}
           </h1>
           <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-1 text-center md:text-left">
-            A system to showcase my projects and skills using Next.js and Tailwind CSS.
+            {`A system to showcase my projects and skills using Next.js and Tailwind CSS. `}
           </p>
         </div>
 
@@ -149,8 +149,8 @@ const prevImage = () => {
       <div className="text-center pt-3 space-y-4">
                {/* ✨ Quote */}
         <blockquote className="mt-6  text-lg md:text-xl italic font-medium text-gray-700 dark:text-gray-300 border-l-4 border-pink-400 dark:border-blue-400 pl-4 md:pl-6 max-w-3xl">
-          "A portfolio website is more than just a collection of projects; it's a dynamic showcase of creativity, skills, and professional growth,
-          designed to leave a lasting impression on visitors."
+          {`"A portfolio website is more than just a collection of projects; it's a dynamic showcase of creativity, skills, and professional growth,
+          designed to leave a lasting impression on visitors."`}
         </blockquote>
       </div>
 

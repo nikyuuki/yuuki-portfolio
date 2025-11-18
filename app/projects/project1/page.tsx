@@ -21,7 +21,7 @@ function TypewriterWords({ text }: { text: string }) {
       }
     }, 250);
     return () => clearInterval(interval);
-  }, []);
+  }, [words]);
 
   return (
     <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">

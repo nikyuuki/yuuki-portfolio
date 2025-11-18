@@ -21,7 +21,7 @@ function TypewriterWords({ text }: { text: string }) {
       }
     }, 250);
     return () => clearInterval(interval);
-  }, []);
+  }, [words]);
 
   return (
     <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -129,10 +129,10 @@ const prevImage = () => {
         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
           {/* 🌸 Title */}
           <h1 className="text-2xl md:text-3xl font-bold text-pink-600 dark:text-blue-200 drop-shadow-sm">
-            🌸 MyRiderID System
+            {`🌸 MyRiderID System`}
           </h1>
           <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-1 text-center md:text-left">
-            A Ruby on Rails-based QR Rider Management system
+            {`A Ruby on Rails-based QR Rider Management system`}
           </p>
         </div>
 
