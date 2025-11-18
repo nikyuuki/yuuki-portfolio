@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { imageBasePath } from "./lib/config";
-
+import Image from "next/image";
 
 export default function TopNavbarLayout({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState("day");
@@ -92,12 +92,15 @@ return (
               transform: `rotate(${f.rotate}deg)`,
             }}
           >
-            <img
+            <Image
               src={f.img}
-              className="opacity-80"
               alt="falling"
-              style={{ width: `${f.size}px`, height: "auto" }}
+              width={f.size}
+              height={f.size}
+              className="opacity-80 select-none pointer-events-none"
+              unoptimized
             />
+
           </div>
         ))}
       </div>
@@ -126,25 +129,32 @@ return (
         </svg>
 
         {/* 🌲 Trees */}
-        <img
+        <Image
           src={`${imageBasePath}/tree-left.svg`}
           alt="Left tree"
-          className="absolute bottom-[-5px] left-[-30px] h-48 md:h-60 lg:h-72 xl:h-80 pointer-events-none select-none drop-shadow-lg transition-all duration-700"
+          width={300}
+          height={400}
+          className="absolute bottom-[-5px] left-[-30px] pointer-events-none select-none drop-shadow-lg transition-all duration-700 h-48 md:h-60 lg:h-72 xl:h-80 w-auto"
           style={{
             filter: isDay
               ? "drop-shadow(0 0 8px rgba(255,192,203,0.4))"
               : "drop-shadow(0 0 10px rgba(100,150,255,0.4))",
           }}
+          unoptimized
         />
-        <img
+
+        <Image
           src={`${imageBasePath}/tree-right.svg`}
           alt="Right tree"
-          className="absolute bottom-[-5px] right-[-30px] h-48 md:h-60 lg:h-72 xl:h-80 pointer-events-none select-none drop-shadow-lg transition-all duration-700"
+          width={300}
+          height={400}
+          className="absolute bottom-[-5px] right-[-30px] pointer-events-none select-none drop-shadow-lg transition-all duration-700 h-48 md:h-60 lg:h-72 xl:h-80 w-auto"
           style={{
             filter: isDay
               ? "drop-shadow(0 0 8px rgba(255,192,203,0.4))"
               : "drop-shadow(0 0 10px rgba(100,150,255,0.4))",
           }}
+          unoptimized
         />
       </div>
     </div>

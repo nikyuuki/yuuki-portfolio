@@ -8,7 +8,11 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const words = text.split(" ");
+  const words = text
+  .replace(/\s+/g, " ")
+  .trim()
+  .split(" ");
+
 
   useEffect(() => {
     let i = 0;
@@ -253,9 +257,12 @@ const prevImage = () => {
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-                text="MyRiderID is a comprehensive rider management platform designed to enhance safety and efficiency for motorcycle riders.
-                Built with Ruby on Rails for the backend with Tailwind CSS for the frontend, this system offers a user-friendly dashboard for managing rider profiles.
-                The MyRiderID System aims to provide a reliable solution for rider identification and emergency response through QR code technology."
+             text={`
+                  MyRiderID is a comprehensive rider management platform designed to enhance safety and efficiency for motorcycle riders.
+                  Built with Ruby on Rails for the backend with Tailwind CSS...
+                  The MyRiderID System aims to provide a reliable solution...
+                  `}
+
            />
         </div>
 

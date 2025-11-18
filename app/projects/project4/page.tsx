@@ -8,7 +8,10 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const words = text.split(" ");
+  const words = text
+  .replace(/\s+/g, " ")
+  .trim()
+  .split(" ");
 
   useEffect(() => {
     let i = 0;
@@ -256,9 +259,9 @@ const prevImage = () => {
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-                text="This portfolio website is built using Next.js for the backend and
+                 text={`This portfolio website is built using Next.js for the backend and
                 frontend, with Tailwind CSS for styling. It features a modern,
-                responsive design that adapts seamlessly to different screen sizes."
+                responsive design that adapts seamlessly to different screen sizes.`}
            />
         </div>
 

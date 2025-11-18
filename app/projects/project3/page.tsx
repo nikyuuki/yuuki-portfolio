@@ -8,7 +8,10 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const words = text.split(" ");
+  const words = text
+  .replace(/\s+/g, " ")
+  .trim()
+  .split(" ");
 
   useEffect(() => {
     let i = 0;
@@ -254,9 +257,9 @@ const prevImage = () => {
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-                text="The Award Istiadat Management System is a Ruby on Rails-based website designed to streamline the management of award received by every awardee.
+                 text={`The Award Istiadat Management System is a Ruby on Rails-based website designed to streamline the management of award received by every awardee.
                 It allows administrators to upload bulk awardee data via Excel files, preview the information, and make it publicly accessible. The system features a user-friendly
-                interface for managing award categories, nominees, and event details, ensuring a smooth and efficient process for public viewing."
+                interface for managing award categories, nominees, and event details, ensuring a smooth and efficient process for public viewing.`}
            />
         </div>
 

@@ -8,7 +8,10 @@ import { imageBasePath } from "../../lib/config";
 
 function TypewriterWords({ text }: { text: string }) {
   const [displayedWords, setDisplayedWords] = useState<string[]>([]);
-  const words = text.split(" ");
+  const words = text
+  .replace(/\s+/g, " ")
+  .trim()
+  .split(" ");
 
   useEffect(() => {
     let i = 0;
@@ -253,7 +256,7 @@ const [zoomed, setZoomed] = useState(false);
         <h3>📖 Project Overview</h3>
         <div className="box-white">
           <TypewriterWords
-                text="Lokalities Food System is a centralized kiosk management system that improves daily operations and product management. It provides a clean, intuitive dashboard with essential utilities, sales tracking, and stock monitoring. The goal is to support local businesses by bringing efficient tools with simple usability."
+                 text={`Lokalities Food System is a centralized kiosk management system that improves daily operations and product management. It provides a clean, intuitive dashboard with essential utilities, sales tracking, and stock monitoring. The goal is to support local businesses by bringing efficient tools with simple usability.`}
            />
         </div>
 
