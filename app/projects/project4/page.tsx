@@ -3,19 +3,93 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { imageBasePath } from "../../lib/config";
+
+function TypewriterWords({ text }: { text: string }) {
+  const [displayedWords, setDisplayedWords] = useState<string[]>([]);
+  const words = text.split(" ");
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < words.length) {
+        setDisplayedWords((prev) => [...prev, words[i]]);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 250);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <p className="typewriter text-gray-700 dark:text-gray-300 leading-relaxed">
+      {displayedWords.map((word, index) => (
+        <span key={index} className="inline-block">
+          {word}
+          {index < words.length - 1 && "\u00A0"}
+        </span>
+      ))}
+    </p>
+  );
+}
+
+
+function TypewriterList({ items }: { items: string[] }) {
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      i++;
+      if (i <= items.length) {
+        setVisibleCount(i);
+      } else {
+        clearInterval(interval);
+      }
+    }, 600);
+    return () => clearInterval(interval);
+  }, [items]);
+
+  return (
+    <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed">
+      {items.slice(0, visibleCount).map((item, index) => (
+        <li
+          key={index}
+          className="opacity-0 animate-fade-in typing-item"
+          style={{
+            animationDelay: `${index * 0.2}s`,
+          }}
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 
 export default function Project1Page() {
- const images = [
-  "/project2-preview.png",
-  "/project2-1.png",
-  "/project2-2.png",
-  "/project2-3.png",
-  "/project2-4.png",
-];
+  const images = [
+    `${imageBasePath}/project4-preview.png`,
+    `${imageBasePath}/project4-1.png`,
+    `${imageBasePath}/project4-2.png`,
+    `${imageBasePath}/project4-3.png`,
+    `${imageBasePath}/project4-4.png`,
+  ];
 
 const [currentIndex, setCurrentIndex] = useState(0);
+
+// Auto-slide every 5 seconds
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, 5000);
+
+  return () => clearInterval(timer);
+}, [images.length]);
+
 const [zoomed, setZoomed] = useState(false);
 
 const nextImage = () => {
@@ -27,6 +101,8 @@ const prevImage = () => {
     prev === 0 ? images.length - 1 : prev - 1
   );
 };
+
+
   return (
     <section className="max-w-5xl mx-auto py-5 px-4 md:px-10 space-y-10 relative">
         {/* 🧭 Breadcrumb */}
@@ -39,7 +115,7 @@ const prevImage = () => {
         </Link>
         <span className="mx-1 text-gray-400">«</span>
         <span className="font-semibold text-gray-900 dark:text-gray-100">
-          Lokalities Food System
+          My Portfolio Website
         </span>
       </div>
 
@@ -57,10 +133,10 @@ const prevImage = () => {
         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
           {/* 🌸 Title */}
           <h1 className="text-2xl md:text-3xl font-bold text-pink-600 dark:text-blue-200 drop-shadow-sm">
-            🌸 Lokalities Food System
+            🌸 My Portfolio Website
           </h1>
           <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-1 text-center md:text-left">
-            A Ruby on Rails-based kiosk management system
+            A system to showcase my projects and skills using Next.js and Tailwind CSS.
           </p>
         </div>
 
@@ -73,125 +149,143 @@ const prevImage = () => {
       <div className="text-center pt-3 space-y-4">
                {/* ✨ Quote */}
         <blockquote className="mt-6  text-lg md:text-xl italic font-medium text-gray-700 dark:text-gray-300 border-l-4 border-pink-400 dark:border-blue-400 pl-4 md:pl-6 max-w-3xl">
-          A centralized kiosk management platform built with Ruby on Rails,
-          focusing on utility and product tracking to empower small business owners.
+          "A portfolio website is more than just a collection of projects; it's a dynamic showcase of creativity, skills, and professional growth,
+          designed to leave a lasting impression on visitors."
         </blockquote>
       </div>
 
-{/* 🪞 Project Image Slider (Dynamic Height & Blur Fill) */}
-<div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
-  <motion.div
-    key={currentIndex}
-    initial={{ opacity: 0, scale: 0.96 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.6 }}
-    className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
-    style={{
-      height: "min(70vh, 600px)", // 💕 responsive tall area
-    }}
-  >
-    {/* Blurred background for portrait filling */}
-    <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
-      <Image
-        src={images[currentIndex]}
-        alt={`Background ${currentIndex + 1}`}
-        fill
-        sizes="(max-width: 768px) 100vw, 800px"
-        className="object-cover"
-      />
-    </div>
+      {/* 🪞 Project Image Slider */}
+      <div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
 
-    {/* Real image centered and preserved ratio */}
-    <div className="relative z-10 w-full h-full flex items-center justify-center">
-      <Image
-        src={images[currentIndex]}
-        alt={`Screenshot ${currentIndex + 1}`}
-        width={800}
-        height={1000}
-        onClick={() => setZoomed(true)}
-        className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
-      />
-    </div>
-  </motion.div>
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
+          style={{ height: "min(70vh, 600px)" }}
+        >
 
-  {/* Navigation buttons */}
-  <button
-    onClick={prevImage}
-    className="absolute left-2 sm:left-0 md:-left-10 top-1/2 -translate-y-1/2 bg-white/60 dark:bg-blue-950/60
-               text-gray-700 dark:text-gray-200 rounded-full w-10 h-10 flex items-center justify-center
-               hover:scale-110 transition backdrop-blur-md shadow"
-  >
-    ‹
-  </button>
-  <button
-    onClick={nextImage}
-    className="absolute right-2 sm:right-0 md:-right-10 top-1/2 -translate-y-1/2 bg-white/60 dark:bg-blue-950/60
-               text-gray-700 dark:text-gray-200 rounded-full w-10 h-10 flex items-center justify-center
-               hover:scale-110 transition backdrop-blur-md shadow"
-  >
-    ›
-  </button>
+          {/* Blurred background */}
+          <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
+            <Image
+              src={images[currentIndex]}
+              alt={`Background ${currentIndex + 1}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              className="object-cover"
+            />
+          </div>
 
-    {/* Image counter */}
-    <div className="flex flex-col items-center mt-3">
-        <p className="text-[11px] text-pink-400 dark:text-blue-300 mt-1 animate-floaty">
-        ✨ Click Picture to Zoom ✨
-        </p>
-    <p className="text-sm text-gray-500 dark:text-gray-400">
-        {currentIndex + 1} / {images.length}
-    </p>
-    </div>
+          {/* Main image */}
+          <div className="relative z-10 w-full h-full flex items-center justify-center">
+            <Image
+              src={images[currentIndex]}
+              alt={`Screenshot ${currentIndex + 1}`}
+              width={800}
+              height={1000}
+              onClick={() => setZoomed(true)}
+              className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+        </motion.div>
 
-  {/* Zoom modal */}
-  {zoomed && (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-      onClick={() => setZoomed(false)}
-    >
-      <Image
-        src={images[currentIndex]}
-        alt="Zoomed image"
-        width={1200}
-        height={1600}
-        className="object-contain max-h-[90vh] w-auto rounded-2xl shadow-2xl border border-pink-300/50 dark:border-blue-800/50 cursor-zoom-out"
-      />
-    </div>
-  )}
-</div>
+      {/* Prev */}
+      <button
+        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+        className="psp-arrow psp-left"
+      >
+        ‹
+      </button>
+
+      {/* Next */}
+      <button
+        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+        className="psp-arrow psp-right"
+      >
+        ›
+      </button>
+
+        {/* Counter */}
+        <div className="flex flex-col items-center mt-3">
+          <p className="text-[11px] text-pink-400 dark:text-blue-300 mt-1 animate-floaty">
+            ✨ Click Picture to Zoom ✨
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {currentIndex + 1} / {images.length}
+          </p>
+        </div>
+
+        {/* Dots Indicator */}
+      <div className="flex gap-2 mt-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`
+              w-3 h-3 rounded-full transition-all
+              ${index === currentIndex
+                ? "bg-pink-400 dark:bg-blue-300 scale-110 shadow-sm"
+                : "bg-pink-200 dark:bg-blue-900 opacity-60 hover:opacity-100"
+              }
+            `}
+          />
+        ))}
+      </div>
 
 
-      {/* 📖 Details Section */}
+        {/* Zoom modal */}
+        {zoomed && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            onClick={() => setZoomed(false)}
+          >
+            <Image
+              src={images[currentIndex]}
+              alt="Zoomed image"
+              width={1200}
+              height={1600}
+              className="object-contain max-h-[90vh] w-auto rounded-2xl shadow-2xl border border-pink-300/50 dark:border-blue-800/50 cursor-zoom-out"
+            />
+          </div>
+        )}
+      </div>
+
+            {/* 📖 Details Section */}
       <div className="backdrop-blur-md bg-white/40 dark:bg-white/10 rounded-2xl shadow-md border border-pink-200/30 dark:border-blue-800/30 p-8 space-y-5">
-        <h3 className="text-2xl font-semibold text-pink-600 dark:text-blue-300">
-          📖 Project Overview
-        </h3>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Lokalities Food System is a centralized kiosk management system that
-          improves daily operations and product management. It provides a clean,
-          intuitive dashboard with essential utilities, sales tracking, and
-          stock monitoring. The goal is to support local businesses by bringing
-          efficient tools with simple usability.
-        </p>
+        <h3>📖 Project Overview</h3>
+        <div className="box-white">
+          <TypewriterWords
+                text="This portfolio website is built using Next.js for the backend and
+                frontend, with Tailwind CSS for styling. It features a modern,
+                responsive design that adapts seamlessly to different screen sizes."
+           />
+        </div>
 
-        <h3 className="text-2xl font-semibold text-pink-600 dark:text-blue-300 pt-4">
-          🛠️ Technologies Used
-        </h3>
-        <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-          <li>Ruby on Rails (backend)</li>
-          <li>PostgreSQL database</li>
-          <li>Next.js + Tailwind CSS (frontend)</li>
-          <li>Cloudinary for image storage</li>
-        </ul>
+        <h3>🛠️ Technologies Used</h3>
+        <div className="box-white">
+          <TypewriterList
+            items={[
+              "Next.js (backend)",
+              "Next.js + Tailwind CSS (frontend)",
+              "Framer Motion (animations)",
+              "GitHub (deployment)",
+            ]}
+          />
+        </div>
 
-        <h3 className="text-2xl font-semibold text-pink-600 dark:text-blue-300 pt-4">
-          🌸 Key Features
-        </h3>
-        <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-          <li>Utility & product tracking dashboard</li>
-          <li>CRUD product management</li>
-          <li>Inventory alert notifications</li>
-          <li>Responsive & mobile-friendly design</li>
-        </ul>
+
+        <h3>🌸 Key Features</h3>
+         <div className="box-white">
+          <TypewriterList
+            items={[
+              "Interactive project showcase",
+              "Responsive design with Tailwind CSS",
+              "Dark mode support",
+              "Responsive & mobile-friendly design",
+            ]}
+          />
+        </div>
       </div>
 
       {/* 💌 Back Button (bottom too) */}

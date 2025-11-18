@@ -78,19 +78,28 @@ export default function Project1Page() {
     `${imageBasePath}/project1-3.png`,
     `${imageBasePath}/project1-4.png`,
 ];
-
 const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
 const [zoomed, setZoomed] = useState(false);
 
-const nextImage = () => {
-  setCurrentIndex((prev) => (prev + 1) % images.length);
-};
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
 
-const prevImage = () => {
-  setCurrentIndex((prev) =>
-    prev === 0 ? images.length - 1 : prev - 1
-  );
-};
+  const prevImage = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  };
+
   return (
     <section className="max-w-5xl mx-auto py-5 px-4 md:px-10 space-y-10 relative">
         {/* 🧭 Breadcrumb */}
@@ -142,87 +151,102 @@ const prevImage = () => {
         </blockquote>
       </div>
 
-{/* 🪞 Project Image Slider (Dynamic Height & Blur Fill) */}
-<div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
-  <motion.div
-    key={currentIndex}
-    initial={{ opacity: 0, scale: 0.96 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.6 }}
-    className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
-    style={{
-      height: "min(70vh, 600px)", // 💕 responsive tall area
-    }}
-  >
-    {/* Blurred background for portrait filling */}
-    <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
-      <Image
-        src={images[currentIndex]}
-        alt={`Background ${currentIndex + 1}`}
-        fill
-        sizes="(max-width: 768px) 100vw, 800px"
-        className="object-cover"
-      />
-    </div>
+      {/* 🪞 Project Image Slider */}
+      <div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
 
-    {/* Real image centered and preserved ratio */}
-    <div className="relative z-10 w-full h-full flex items-center justify-center">
-      <Image
-        src={images[currentIndex]}
-        alt={`Screenshot ${currentIndex + 1}`}
-        width={800}
-        height={1000}
-        onClick={() => setZoomed(true)}
-        className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
-      />
-    </div>
-  </motion.div>
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
+          style={{ height: "min(70vh, 600px)" }}
+        >
 
-      {/* Navigation buttons */}
+          {/* Blurred background */}
+          <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
+            <Image
+              src={images[currentIndex]}
+              alt={`Background ${currentIndex + 1}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Main image */}
+          <div className="relative z-10 w-full h-full flex items-center justify-center">
+            <Image
+              src={images[currentIndex]}
+              alt={`Screenshot ${currentIndex + 1}`}
+              width={800}
+              height={1000}
+              onClick={() => setZoomed(true)}
+              className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+        </motion.div>
+
+      {/* Prev */}
       <button
-        onClick={prevImage}
-        className="absolute left-2 sm:left-0 md:-left-10 top-1/2 -translate-y-1/2 bg-white/60 dark:bg-blue-950/60
-                  text-gray-700 dark:text-gray-200 rounded-full w-10 h-10 flex items-center justify-center
-                  hover:scale-110 transition backdrop-blur-md shadow"
+        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+        className="psp-arrow psp-left"
       >
         ‹
       </button>
+
+      {/* Next */}
       <button
-        onClick={nextImage}
-        className="absolute right-2 sm:right-0 md:-right-10 top-1/2 -translate-y-1/2 bg-white/60 dark:bg-blue-950/60
-                  text-gray-700 dark:text-gray-200 rounded-full w-10 h-10 flex items-center justify-center
-                  hover:scale-110 transition backdrop-blur-md shadow"
+        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+        className="psp-arrow psp-right"
       >
         ›
       </button>
 
-        {/* Image counter */}
+        {/* Counter */}
         <div className="flex flex-col items-center mt-3">
-            <p className="text-[11px] text-pink-400 dark:text-blue-300 mt-1 animate-floaty">
+          <p className="text-[11px] text-pink-400 dark:text-blue-300 mt-1 animate-floaty">
             ✨ Click Picture to Zoom ✨
-            </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {currentIndex + 1} / {images.length}
-        </p>
+          </p>
         </div>
 
-      {/* Zoom modal */}
-      {zoomed && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-          onClick={() => setZoomed(false)}
-        >
-          <Image
-            src={images[currentIndex]}
-            alt="Zoomed image"
-            width={1200}
-            height={1600}
-            className="object-contain max-h-[90vh] w-auto rounded-2xl shadow-2xl border border-pink-300/50 dark:border-blue-800/50 cursor-zoom-out"
+        {/* Dots Indicator */}
+      <div className="flex gap-2 mt-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`
+              w-3 h-3 rounded-full transition-all
+              ${index === currentIndex
+                ? "bg-pink-400 dark:bg-blue-300 scale-110 shadow-sm"
+                : "bg-pink-200 dark:bg-blue-900 opacity-60 hover:opacity-100"
+              }
+            `}
           />
-        </div>
-      )}
-    </div>
+        ))}
+      </div>
 
+
+        {/* Zoom modal */}
+        {zoomed && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            onClick={() => setZoomed(false)}
+          >
+            <Image
+              src={images[currentIndex]}
+              alt="Zoomed image"
+              width={1200}
+              height={1600}
+              className="object-contain max-h-[90vh] w-auto rounded-2xl shadow-2xl border border-pink-300/50 dark:border-blue-800/50 cursor-zoom-out"
+            />
+          </div>
+        )}
+      </div>
 
       {/* 📖 Details Section */}
       <div className="backdrop-blur-md bg-white/40 dark:bg-white/10 rounded-2xl shadow-md border border-pink-200/30 dark:border-blue-800/30 p-8 space-y-5">
@@ -240,8 +264,7 @@ const prevImage = () => {
             items={[
               "Ruby on Rails (backend)",
               "PostgreSQL database",
-              "Next.js + Tailwind CSS (frontend)",
-              "Cloudinary for image storage",
+              "Bootstrap 5 (frontend)",
             ]}
           />
         </div>

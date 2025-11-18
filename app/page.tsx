@@ -116,6 +116,27 @@ export default function HomePage() {
 
       {/* 🪞 Project Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Link
+          href="/projects/project4"
+          className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
+        >
+          <Image
+            src={`${imageBasePath}/project4-preview.png`}
+            alt="Portfolio preview"
+            width={400}
+            height={250}
+            className="object-cover w-full h-48"
+          />
+          <div className="p-5">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 group-hover:text-pink-500 dark:group-hover:text-blue-300">
+              My Portfolio
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              Creative system for exhibit my projects and background.
+            </p>
+          </div>
+        </Link>
+
         {/* Project 1 */}
         <Link
           href="/projects/project1"
@@ -138,7 +159,6 @@ export default function HomePage() {
           </div>
         </Link>
 
-        {/* Add more projects below */}
         <Link
           href="/projects/project2"
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
