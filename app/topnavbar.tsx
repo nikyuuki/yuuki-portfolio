@@ -162,12 +162,22 @@ return (
 
       {/* 🌸 Sticky Top Navbar */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 rounded-b-3xl backdrop-blur-md ${
-          isDay
-            ? "bg-white/70 text-gray-800"
-            : "bg-indigo-950/70 text-gray-100"
-        } ${scrolled ? "py-2 shadow-md" : "py-5 shadow-sm"}`}
+        className={`
+          fixed top-0 left-0 right-0 z-50
+          flex items-center justify-between
+          px-6 md:px-12
+          transition-all duration-500
+          rounded-b-3xl backdrop-blur-md
+          ${isDay ? "bg-white/70 text-gray-800" : "bg-indigo-950/70 text-gray-100"}
+          ${scrolled ? "py-2" : "py-5"}
+        `}
+        style={{
+          boxShadow: isDay
+            ? "0 4px 12px rgba(0,0,0,0.25)"
+            : "0 4px 12px rgba(255,255,255,0.25)"
+        }}
       >
+
         <div className="flex items-center gap-3">
           <h1
             className={`text-2xl md:text-3xl font-bold font-serif transition-all duration-300 ${
@@ -277,20 +287,25 @@ return (
       </AnimatePresence>
 
     {/* 🌼 Main Content (Scrollable) */}
-    <main className="relative z-10 pt-28 md:pt-32 transition-all duration-700 p-6 md:p-12 overflow-y-auto">
+    <main className="relative z-10 pt-28 md:pt-32 transition-all duration-700 p-0 md:p-12 overflow-y-auto">
       <div
-        className={`mx-auto w-full md:w-[90%] lg:w-[85%] xl:w-[80%] 2xl:w-[70%] min-h-[85vh] p-10 rounded-2xl border-[1px] backdrop-blur-xl transition-all duration-700 shadow-[0_0_30px_rgba(255,255,255,0.1)] ${
-          isDay
-            ? "border-pink-200/40 bg-white/30 text-gray-800 shadow-[0_0_20px_rgba(255,182,193,0.3)]"
-            : "border-blue-300/30 bg-white/10 text-gray-100 shadow-[0_0_25px_rgba(173,216,230,0.25)]"
-        }`}
-        style={{
-          boxShadow: isDay
-            ? "0 0 30px rgba(255,182,193,0.2)"
-            : "0 0 30px rgba(100,150,255,0.2)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-        }}
+        className={`w-full md:mx-auto md:w-[90%] lg:w-[85%] xl:w-[80%] 2xl:w-[70%]
+          min-h-[85vh] p-6 md:p-10
+          rounded-none md:rounded-2xl
+          border-[1px] backdrop-blur-xl transition-all duration-700
+          shadow-none md:shadow-[0_0_30px_rgba(255,255,255,0.1)]
+          ${
+            isDay
+              ? "border-pink-200/40 bg-white/30 text-gray-800 md:shadow-[0_0_20px_rgba(255,182,193,0.3)]"
+              : "border-blue-300/30 bg-white/10 text-gray-100 md:shadow-[0_0_25px_rgba(173,216,230,0.25)]"
+          }`}
+          style={{
+            boxShadow: isDay
+              ? "0 0 30px rgba(255,182,193,0.2)"
+              : "0 0 30px rgba(100,150,255,0.2)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+          }}
       >
         <div className="relative z-10 space-y-6">{children}</div>
       </div>

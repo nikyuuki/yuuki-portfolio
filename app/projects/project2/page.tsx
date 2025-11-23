@@ -101,7 +101,7 @@ const prevImage = () => {
   );
 };
   return (
-    <section className="max-w-5xl mx-auto py-5 px-4 md:px-10 space-y-10 relative">
+    <section className="max-w-5xl mx-auto py-2 md:px-10 space-y-10 relative">
         {/* 🧭 Breadcrumb */}
       <div className="pt-1 text-sm md:text-base text-gray-700 dark:text-gray-300 mb-1">
         <Link
@@ -121,12 +121,13 @@ const prevImage = () => {
         initial={{ opacity: 0, y: -25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-20 left-1/5 -translate-x-1/2 z-40 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%]
-        bg-gradient-to-r from-pink-200/80 to-blue-200/80 dark:from-blue-900/80 dark:to-purple-900/80
-        backdrop-blur-lg border border-pink-300/40 dark:border-blue-800/40
-        shadow-[0_0_25px_rgba(255,182,193,0.4)] dark:shadow-[0_0_25px_rgba(150,180,255,0.4)]
-        rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4"
-      >
+        className="fixed left-0 right-0 mx-auto
+          w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%]
+          bg-gradient-to-r from-pink-200/80 to-blue-200/80 dark:from-blue-900/80 dark:to-purple-900/80
+          backdrop-blur-lg border border-pink-300/40 dark:border-blue-800/40
+          shadow-[0_0_25px_rgba(255,182,193,0.4)] dark:shadow-[0_0_25px_rgba(150,180,255,0.4)]
+          rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
           {/* 🌸 Title */}
           <h1 className="text-2xl md:text-3xl font-bold text-pink-600 dark:text-blue-200 drop-shadow-sm">
@@ -159,8 +160,16 @@ const prevImage = () => {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative w-full rounded-2xl overflow-hidden bg-gray-200/40 dark:bg-blue-950/40 flex items-center justify-center"
-          style={{ height: "min(70vh, 600px)" }}
+          className="
+            relative w-full rounded-2xl overflow-hidden
+            bg-gray-200/40 dark:bg-blue-950/40
+            flex items-center justify-center
+          "
+          style={{
+            height: window?.innerWidth < 768
+              ? "min(35vh, 320px)"   // 📱 mobile
+              : "min(50vh, 450px)",  // 💻 desktop
+          }}
         >
 
           {/* Blurred background */}
@@ -186,16 +195,12 @@ const prevImage = () => {
             />
           </div>
         </motion.div>
-
-      {/* Prev */}
       <button
         onClick={(e) => { e.stopPropagation(); prevImage(); }}
         className="psp-arrow psp-left"
       >
         ‹
       </button>
-
-      {/* Next */}
       <button
         onClick={(e) => { e.stopPropagation(); nextImage(); }}
         className="psp-arrow psp-right"
@@ -230,8 +235,6 @@ const prevImage = () => {
         ))}
       </div>
 
-
-        {/* Zoom modal */}
         {zoomed && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
@@ -248,8 +251,6 @@ const prevImage = () => {
         )}
       </div>
 
-
-      {/* 📖 Details Section */}
       <div className="backdrop-blur-md bg-white/40 dark:bg-white/10 rounded-2xl shadow-md border border-pink-200/30 dark:border-blue-800/30 p-8 space-y-5">
         <h3>📖 Project Overview</h3>
         <div className="box-white">
@@ -265,9 +266,9 @@ const prevImage = () => {
         <div className="box-white">
           <TypewriterList
             items={[
-              "Ruby on Rails (backend)",
-              "PostgreSQL database",
-              "javascript + Tailwind CSS (frontend)",
+              "Ruby on Rails (Backend)",
+              "PostgreSQL (Database)",
+              "javascript + Tailwind CSS (Frontend)",
             ]}
           />
         </div>

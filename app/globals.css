@@ -12,6 +12,14 @@
 body {
   font-family: var(--font-body), sans-serif;
 }
+@keyframes scared-shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
 
 @layer base {
   /* 🌼 Force all body text to Poppins */

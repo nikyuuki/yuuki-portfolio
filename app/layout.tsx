@@ -2,6 +2,7 @@ import { Poppins, Quicksand, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import type { Metadata } from "next";
 import ClientLayout from "./ClientLayout";
+import FloatingYuuki from "./components/FloatingYuuki";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${quicksand.variable} ${playfair.variable} antialiased !font-sans`}
       >
         <ClientLayout>{children}</ClientLayout>
+              <FloatingYuuki />
       </body>
     </html>
   );

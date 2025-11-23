@@ -6,10 +6,10 @@ import { imageBasePath } from "../lib/config";
 
 export default function ProjectsPage() {
   return (
-    <section data-aos="fade-down" className="w-full max-w-6xl mx-auto py-16 px-6 md:px-12">
+    <section data-aos="fade-down" className="w-full max-w-6xl mx-auto  px-2">
       {/* 🌸 Title */}
       <h1 className="text-4xl font-bold text-center mb-10 text-pink-600 dark:text-blue-300">
-        🌸 My Projects
+        My Projects
       </h1>
 
       {/* 🪞 Project Cards */}
