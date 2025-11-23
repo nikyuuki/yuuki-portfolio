@@ -161,7 +161,6 @@ const prevImage = () => {
 
       {/* 🪞 Project Image Slider */}
       <div className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
-
         <motion.div
           key={currentIndex}
           initial={{ opacity: 0, scale: 0.96 }}
@@ -171,14 +170,11 @@ const prevImage = () => {
             relative w-full rounded-2xl overflow-hidden
             bg-gray-200/40 dark:bg-blue-950/40
             flex items-center justify-center
-          "
-          style={{
-            height: window?.innerWidth < 768
-              ? "min(35vh, 320px)"   // 📱 mobile
-              : "min(50vh, 450px)",  // 💻 desktop
-          }}
-        >
 
+            h-[35vh] max-h-[320px]          /* 📱 mobile */
+            md:h-[50vh] md:max-h-[450px]   /* 💻 desktop */
+          "
+        >
 
           {/* Blurred background */}
           <div className="absolute inset-0 blur-3xl scale-110 opacity-60">

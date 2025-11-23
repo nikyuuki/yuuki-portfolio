@@ -165,13 +165,12 @@ const [zoomed, setZoomed] = useState(false);
             relative w-full rounded-2xl overflow-hidden
             bg-gray-200/40 dark:bg-blue-950/40
             flex items-center justify-center
+
+            h-[35vh] max-h-[320px]          /* 📱 mobile */
+            md:h-[50vh] md:max-h-[450px]   /* 💻 desktop */
           "
-          style={{
-            height: window?.innerWidth < 768
-              ? "min(35vh, 320px)"   // 📱 mobile
-              : "min(50vh, 450px)",  // 💻 desktop
-          }}
         >
+
 
           {/* Blurred background */}
           <div className="absolute inset-0 blur-3xl scale-110 opacity-60">
