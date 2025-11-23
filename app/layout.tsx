@@ -25,6 +25,22 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Nik Alyaa Portfolio",
   description: "A dreamy portfolio full of magic ✨",
+  openGraph: {
+    title: "Nik Alyaa Portfolio",
+    description: "A dreamy portfolio full of magic ✨",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Yuuki Portfolio Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
@@ -41,7 +57,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${quicksand.variable} ${playfair.variable} antialiased !font-sans`}
       >
         <ClientLayout>{children}</ClientLayout>
-              <FloatingYuuki />
+        <FloatingYuuki />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { imageBasePath } from "@/app/lib/config";
 
 export default function FloatingYuuki() {
   const [gone, setGone] = useState(false);
