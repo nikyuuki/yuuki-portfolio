@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Briefcase, Sparkles } from "lucide-react";
-import { imageBasePath } from "../lib/config";
+import {  Sparkles } from "lucide-react";
 import SkillSection from "../public/SkillSection";
 import AboutMe from "../about/AboutMe";
 import Education from "../about/Education";

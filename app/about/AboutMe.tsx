@@ -33,7 +33,7 @@ export default function AboutMe({ imageBasePath }: { imageBasePath: string }) {
           {/* Text */}
           <div className="flex flex-col justify-center space-y-4 text-center md:text-left max-w-2xl">
             <h3 className="text-2xl font-bold text-purple-600 dark:text-blue-200">
-              Hello! I'm NIK ALYAA 💕
+              {"Hello! I'm NIK ALYAA 💕"}
             </h3>
 
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">

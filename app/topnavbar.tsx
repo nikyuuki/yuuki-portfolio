@@ -114,11 +114,12 @@ return (
     {navLinks.map((link) => {
       const isActive = pathname === link.path;
 
-      const iconMap: any = {
-        "/": <Home className="w-5 h-5" />,
-        "/about": <User className="w-5 h-5" />,
-        "/projects": <FolderKanban className="w-5 h-5" />,
+      const iconMap: Record<string, React.ReactNode> = {
+        "/": <Home className="w-7 h-7" />,
+        "/about": <User className="w-7 h-7" />,
+        "/projects": <FolderKanban className="w-7 h-7" />,
       };
+
 
       return (
         <Link key={link.path} href={link.path} className="relative group">
@@ -188,11 +189,12 @@ return (
             {navLinks.map((link) => {
               const isActive = pathname === link.path;
 
-              const iconMap: any = {
-                "/": <Home className="w-7 h-7" />,
-                "/about": <User className="w-7 h-7" />,
-                "/projects": <FolderKanban className="w-7 h-7" />,
+              const iconMap: Record<string, React.ReactNode> = {
+                "/": <Home className="w-5 h-5" />,
+                "/about": <User className="w-5 h-5" />,
+                "/projects": <FolderKanban className="w-5 h-5" />,
               };
+
 
               return (
                 <Link
