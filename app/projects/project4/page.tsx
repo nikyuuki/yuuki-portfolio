@@ -77,11 +77,11 @@ function TypewriterList({ items }: { items: string[] }) {
 
 export default function Project1Page() {
   const images = [
-    `${imageBasePath}/project4-preview.png`,
-    `${imageBasePath}/project4-1.png`,
-    `${imageBasePath}/project4-2.png`,
-    `${imageBasePath}/project4-3.png`,
-    `${imageBasePath}/project4-4.png`,
+    `${imageBasePath}/project4-preview.webp`,
+    `${imageBasePath}/project4-1.webp`,
+    `${imageBasePath}/project4-2.webp`,
+    `${imageBasePath}/project4-3.webp`,
+    `${imageBasePath}/project4-4.webp`,
   ];
 
 const [currentIndex, setCurrentIndex] = useState(0);
@@ -181,6 +181,7 @@ const prevImage = () => {
             <Image
               src={images[currentIndex]}
               alt={`Background ${currentIndex + 1}`}
+              loading="lazy"
               fill
               sizes="(max-width: 768px) 100vw, 800px"
               className="object-cover"
@@ -193,6 +194,7 @@ const prevImage = () => {
               src={images[currentIndex]}
               alt={`Screenshot ${currentIndex + 1}`}
               width={800}
+              loading="lazy"
               height={1000}
               onClick={() => setZoomed(true)}
               className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"

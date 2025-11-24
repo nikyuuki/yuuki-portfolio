@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "A dreamy portfolio full of magic ✨",
     images: [
       {
-        url: "/og.png",
+        url: "/og.webp",
         width: 1200,
         height: 630,
         alt: "Yuuki Portfolio Preview",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og.png"],
+    images: ["/og.webp"],
   },
 };
 

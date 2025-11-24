@@ -6,17 +6,18 @@ import { imageBasePath } from "./lib/config";
 
 export default function HomePage() {
   return (
-    <div data-aos="fade-down" className="flex flex-col items-center justify-center w-full text-center md:text-left px-6 md:px-12 lg:px-24 py-2 space-y-20 transition-all duration-700">
+    <div className="flex flex-col items-center justify-center w-full text-center md:text-left px-6 md:px-12 lg:px-24 py-2 space-y-20 transition-all duration-700">
       {/* 🌼 Hero Section */}
       <section className="flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 py-2">
         {/* 🩷 Profile Image */}
         <div className="relative">
           <div className="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-[5px] border-pink-400 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,182,193,0.6)]">
             <Image
-              src={`${imageBasePath}/yuuki.svg`}
+              src={`${imageBasePath}/yuuki.webp`}
               alt="Nik Alyaa portrait"
-              width={100}
-              height={100}
+              width={208}
+              height={208}
+              priority
               className="object-cover w-full h-full rounded-full"
             />
           </div>
@@ -121,10 +122,11 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project4-preview.png`}
+            src={`${imageBasePath}/project4-preview.webp`}
             alt="Portfolio preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">
@@ -143,10 +145,11 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project1-preview.png`}
+            src={`${imageBasePath}/project1-preview.webp`}
             alt="Lokalities Food System preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">
@@ -164,10 +167,11 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project2-preview.png`}
+            src={`${imageBasePath}/project2-preview.webp`}
             alt="My Rider ID preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">
@@ -185,10 +189,11 @@ export default function HomePage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project3-preview.png`}
+            src={`${imageBasePath}/project3-preview.webp`}
             alt="Portfolio Website preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">

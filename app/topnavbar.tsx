@@ -128,34 +128,21 @@ return (
           ></path>
         </svg>
 
-        {/* 🌲 Trees */}
-        <Image
-          src={`${imageBasePath}/tree-left.svg`}
-          alt="Left tree"
-          width={300}
-          height={400}
-          className="absolute bottom-[-5px] left-[-30px] pointer-events-none select-none drop-shadow-lg transition-all duration-700 h-48 md:h-60 lg:h-72 xl:h-80 w-auto"
-          style={{
-            filter: isDay
-              ? "drop-shadow(0 0 8px rgba(255,192,203,0.4))"
-              : "drop-shadow(0 0 10px rgba(100,150,255,0.4))",
-          }}
-          unoptimized
-        />
-
-        <Image
-          src={`${imageBasePath}/tree-right.svg`}
-          alt="Right tree"
-          width={300}
-          height={400}
-          className="absolute bottom-[-5px] right-[-30px] pointer-events-none select-none drop-shadow-lg transition-all duration-700 h-48 md:h-60 lg:h-72 xl:h-80 w-auto"
-          style={{
-            filter: isDay
-              ? "drop-shadow(0 0 8px rgba(255,192,203,0.4))"
-              : "drop-shadow(0 0 10px rgba(100,150,255,0.4))",
-          }}
-          unoptimized
-        />
+      {/* 🌲 Trees as CSS Background */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-64 pointer-events-none select-none bg-no-repeat bg-bottom"
+        style={{
+          backgroundImage: `
+            url('${imageBasePath}/tree-left.webp'),
+            url('${imageBasePath}/tree-right.webp')
+          `,
+          backgroundPosition: "left bottom, right bottom",
+          backgroundSize: "auto 100%, auto 100%",
+          filter: isDay
+            ? "drop-shadow(0 0 8px rgba(255,192,203,0.4))"
+            : "drop-shadow(0 0 10px rgba(100,150,255,0.4))",
+        }}
+      />
       </div>
     </div>
 

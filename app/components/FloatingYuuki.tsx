@@ -3,13 +3,21 @@
 import { useState } from "react";
 import Image from "next/image";
 import { imageBasePath } from "../lib/config";
-
+import { useEffect } from "react";
 
 export default function FloatingYuuki() {
   const [gone, setGone] = useState(false);
   const [hover, setHover] = useState(false);
 
   if (gone) return null;
+const [show, setShow] = useState(false);
+
+useEffect(() => {
+  const t = setTimeout(() => setShow(true), 800); // delay 0.8s
+  return () => clearTimeout(t);
+}, []);
+
+if (!show) return null;
 
   return (
     <div
@@ -76,10 +84,10 @@ export default function FloatingYuuki() {
         onClick={() => setGone(true)}
       >
         <Image
-          src={`${imageBasePath}/chibiyuuki.svg`}
+          src={`${imageBasePath}/chibiyuuki.webp`}
           alt="chibi yuuki"
-          width={110}
-          height={110}
+          width="110"
+          height="110"
           className="rounded-full drop-shadow-xl"
         />
       </div>

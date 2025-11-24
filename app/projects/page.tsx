@@ -19,10 +19,11 @@ export default function ProjectsPage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project4-preview.png`}
+            src={`${imageBasePath}/project4-preview.webp`}
             alt="Portfolio Website preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">
@@ -41,10 +42,11 @@ export default function ProjectsPage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project1-preview.png`}
+            src={`${imageBasePath}/project1-preview.webp`}
             alt="Lokalities Food System preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">
@@ -63,10 +65,11 @@ export default function ProjectsPage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project2-preview.png`}
+            src={`${imageBasePath}/project2-preview.webp`}
             alt="My Rider ID preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">
@@ -84,10 +87,11 @@ export default function ProjectsPage() {
           className="group rounded-2xl overflow-hidden bg-white/40 dark:bg-white/10 backdrop-blur-md border border-pink-200/40 dark:border-blue-800/40 shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-500"
         >
           <Image
-            src={`${imageBasePath}/project3-preview.png`}
+            src={`${imageBasePath}/project3-preview.webp`}
             alt="Award Istiadat Management System preview"
             width={400}
             height={250}
+            loading="lazy"
             className="object-cover w-full h-48"
           />
           <div className="p-5">

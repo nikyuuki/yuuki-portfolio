@@ -73,11 +73,11 @@ function TypewriterList({ items }: { items: string[] }) {
 
 export default function Project1Page() {
   const images = [
-    `${imageBasePath}/project1-preview.png`,
-    `${imageBasePath}/project1-1.png`,
-    `${imageBasePath}/project1-2.png`,
-    `${imageBasePath}/project1-3.png`,
-    `${imageBasePath}/project1-4.png`,
+    `${imageBasePath}/project1-preview.webp`,
+    `${imageBasePath}/project1-1.webp`,
+    `${imageBasePath}/project1-2.webp`,
+    `${imageBasePath}/project1-3.webp`,
+    `${imageBasePath}/project1-4.webp`,
 ];
 const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -178,8 +178,11 @@ const [zoomed, setZoomed] = useState(false);
               src={images[currentIndex]}
               alt={`Background ${currentIndex + 1}`}
               fill
-              sizes="(max-width: 768px) 100vw, 800px"
-              className="object-cover"
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL="/tiny-placeholder.png"
+              className="object-cover opacity-60 scale-110"
+              loading="lazy"
             />
           </div>
 
@@ -191,7 +194,7 @@ const [zoomed, setZoomed] = useState(false);
               width={800}
               height={1000}
               onClick={() => setZoomed(true)}
-              className="object-contain w-auto max-w-full h-full max-h-full cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
+              className="object-contain w-full h-auto max-h-[85vh] cursor-zoom-in rounded-2xl shadow-xl border border-pink-200/40 dark:border-blue-800/40 transition-transform duration-500 hover:scale-[1.02]"
             />
           </div>
         </motion.div>
