@@ -10,7 +10,7 @@
 
 /* ✨ Base fonts */
 body {
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body);
 }
 @keyframes scared-shake {
   0% { transform: translateX(0); }
@@ -61,8 +61,6 @@ body, p, li, span, button, input, textarea {
   text-shadow: 0 0 10px rgba(255,182,193,0.6), 0 0 20px rgba(255,192,203,0.3);
   transform: scale(1.02);
 }
-
-
 .dark {
   color-scheme: dark;
 }
@@ -76,11 +74,6 @@ body, p, li, span, button, input, textarea {
   }
 }
 
-.animate-fall {
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
 html, body {
   overflow-x: hidden;
 
@@ -93,29 +86,6 @@ html, body {
 
 .animate-fade-in {
   animation: fade-in 0.8s ease-out both;
-}
-
-.fill-gradient-night {
-  fill: url(#nightWaveGradient);
-}
-
-svg defs {
-  pointer-events: none;
-}
-@keyframes sway {
-  0%, 100% { transform: translateY(5px) rotate(0deg); }
-  50% { transform: translateY(7px) rotate(-1.5deg); }
-}
-
-.tree-sway {
-  animation: sway 6s ease-in-out infinite;
-}
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
-}
-.animate-floaty {
-  animation: floaty 2s ease-in-out infinite;
 }
 
 /* 🌸 Box White Style */
@@ -167,11 +137,15 @@ svg defs {
   }
 }
 
+/* -------------------------------------- */
+/* 🌸 Typewriter Cursor Color */
+/* -------------------------------------- */
+
 .typewriter {
   display: inline-block;
   white-space: normal;
   overflow: hidden;
-  border-right: 3px solid #ffb6c1;
+  border-right: 3px solid #d946ef; /* pink-purple cursor (day) */
   animation: blink 0.8s step-end infinite;
   max-width: 100%;
   word-break: break-word;
@@ -180,17 +154,15 @@ svg defs {
 }
 
 .dark .typewriter {
-  border-right: 3px solid #80bfff;
+  border-right: 3px solid #60a5fa; /* soft blue cursor (night) */
 }
 
-/* 🌸 Each word appears one after another */
 .typewriter span {
   opacity: 0;
   display: inline-block;
   animation: wordwriter 0.3s forwards;
 }
 
-/* ✨ Fade-in animation for each list item */
 @keyframes fadeInTyping {
   from {
     opacity: 0;
@@ -206,45 +178,41 @@ svg defs {
   animation: fadeInTyping 0.4s ease forwards;
 }
 
-/* 🌸 Soft pulse for the text (optional, looks magical!) */
+/* list bullet color */
 .typing-item::marker {
-  color: #f472b6; /* pink-400 bullet for day */
+  color: #d946ef; /* pink-purple (day) */
 }
 
 .dark .typing-item::marker {
-  color: #60a5fa; /* blue-400 bullet for night */
+  color: #60a5fa; /* glowing blue (night) */
 }
 
-/* 🌸 Global H3 Style — sparkly subtitle effect */
 h3 {
-  font-size: 1.5rem; /* same as text-2xl */
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #ec4899; /* pink-600 for day */
+  color: #a855f7; /* purple-500 (day) */
   transition: all 0.3s ease;
   display: inline-block;
   position: relative;
   cursor: default;
 }
 
-/* ✨ Hover zoom + glow effect */
 h3:hover {
   transform: scale(1.05);
-  text-shadow: 0 0 8px rgba(255, 182, 193, 0.7),
-               0 0 15px rgba(255, 192, 203, 0.4);
+  text-shadow: 0 0 10px rgba(197, 128, 255, 0.6),
+               0 0 18px rgba(216, 166, 255, 0.4);
 }
 
-/* 🌙 Night mode glow */
 .dark h3 {
-  color: #93c5fd; /* blue-300 */
+  color: #dbeafe; /* blue-200 (night) */
 }
 
 .dark h3:hover {
-  transform: scale(1.05);
-  text-shadow: 0 0 8px rgba(147, 197, 253, 0.8),
-               0 0 16px rgba(147, 197, 253, 0.5);
+  text-shadow: 0 0 10px rgba(147, 197, 253, 0.8),
+               0 0 20px rgba(147, 197, 253, 0.5);
 }
 
-/* 🩷 Optional underline animation when hover */
+/* underline animation */
 h3::after {
   content: "";
   position: absolute;
@@ -252,7 +220,7 @@ h3::after {
   left: 0;
   width: 0%;
   height: 2px;
-  background: linear-gradient(to right, #f9a8d4, #93c5fd);
+  background: linear-gradient(to right, #d946ef, #93c5fd);
   border-radius: 2px;
   transition: width 0.3s ease-in-out;
 }
@@ -261,40 +229,33 @@ h3:hover::after {
   width: 100%;
 }
 
-/* 🌷 Global Title Styling (h1 & h2) */
 h1,
 h2 {
-  @apply font-extrabold tracking-wide transition-all duration-500 text-center;
+  color: #9333ea; /* purple-600 (day) */
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* 🌸 Day mode base style */
-h1,
-h2 {
-  color: #ec4899; /* pink-500 */
-  text-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
-}
-
-/* ❄️ Night mode base style */
 .dark h1,
 .dark h2 {
-  color: #bfdbfe; /* blue-200 */
-  text-shadow: 0 0 6px rgba(147, 197, 253, 0.3);
+  color: #3487ec; /* soft blue-200 (night) */
+  text-shadow: 0 0 8px rgba(147, 197, 253, 0.4);
 }
 
-/* 💖 Hover glow effect (shared by h1 & h2) */
 h1:hover,
 h2:hover {
   transform: scale(1.03);
-  text-shadow: 0 0 12px rgba(255, 182, 193, 0.7), 0 0 24px rgba(255, 192, 203, 0.5);
+  text-shadow: 0 0 14px rgba(168, 85, 247, 0.7),
+               0 0 24px rgba(216, 180, 254, 0.6);
 }
 
-/* 🌙 Night mode hover */
 .dark h1:hover,
 .dark h2:hover {
-  text-shadow: 0 0 14px rgba(147, 197, 253, 0.7), 0 0 28px rgba(180, 200, 255, 0.5);
+  text-shadow: 0 0 14px rgba(147, 197, 253, 0.85),
+               0 0 28px rgba(186, 230, 253, 0.5);
 }
 
-/* 🎮 PSP Base Arrow */
+
 .psp-arrow {
   position: absolute;
   top: 50%;
@@ -377,4 +338,115 @@ h2:hover {
   .psp-right {
     right: -35px;
   }
+}
+
+/* 🌞 LIGHT MODE (white theme) */
+.project-card {
+  display: block;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #f7f3ff;          /* soft lavender like skill cards */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.2); /* soft purple border */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+}
+
+/* Title */
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f1f1f;       /* dark text */
+  transition: color 0.3s ease;
+}
+
+/* Hover title */
+.project-card:hover .project-title {
+  color: #a855f7;       /* purple hover */
+}
+
+/* Description */
+.project-description {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 0.5rem;
+}
+
+/* 🌙 DARK MODE (black theme) */
+.dark .project-card {
+  background-color: rgba(255, 255, 255, 0.253);  /* same as skill card */
+  border-color: rgba(255, 255, 255, 0.15);      /* subtle white border */
+}
+
+.dark .project-title {
+  color: #f3f4f6;      /* soft white */
+}
+
+.dark .project-card:hover .project-title {
+  color: #93c5fd;      /* blue like skills */
+}
+
+.dark .project-description {
+  color: #d1d5db;      /* light gray */
+}
+
+/* 🌸 Cute Button – reusable everywhere */
+.cute-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.75rem 2rem;        /* px-8 py-3 */
+  border-radius: 9999px;        /* rounded-full */
+
+  font-weight: 600;
+  color: white;
+
+  transition: all 0.5s ease;
+
+  /* Gradient (Light Mode) */
+  background: linear-gradient(to right, #f472b6, #60a5fa); /* pink-400 to blue-400 */
+  box-shadow: 0 0 20px rgba(255,182,193,0.4);
+}
+
+/* Hover (Light Mode) */
+.cute-button:hover {
+  background: linear-gradient(to right, #ec4899, #3b82f6); /* hover: pink-500 to blue-500 */
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(173,216,230,0.4);
+}
+
+/* 🌙 Dark Mode */
+.dark .cute-button {
+  background: linear-gradient(to right, #1e3a8a, #6b21a8); /* from-blue-700 to-purple-700 */
+  box-shadow: 0 0 20px rgba(147,197,253,0.35);
+}
+
+/* Hover (Dark Mode) */
+.dark .cute-button:hover {
+  background: linear-gradient(to right, #2563eb, #7e22ce);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(180,200,255,0.4);
+}
+
+/* ✨ Glow pulse element inside button */
+.cute-button-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.2);
+  filter: blur(12px);
+  z-index: -1;
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
 }

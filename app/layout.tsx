@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import ClientLayout from "./ClientLayout";
 import FloatingYuuki from "./components/FloatingYuuki";
+import Footer from "./components/Footer"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
       >
         <ClientLayout>{children}</ClientLayout>
         <FloatingYuuki />
+        <Footer/>
       </body>
     </html>
   );
