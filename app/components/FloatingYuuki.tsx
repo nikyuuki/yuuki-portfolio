@@ -1,23 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { imageBasePath } from "../lib/config";
-import { useEffect } from "react";
 
 export default function FloatingYuuki() {
+  // 🌸 All hooks MUST be at top — no conditions before them
   const [gone, setGone] = useState(false);
   const [hover, setHover] = useState(false);
+  const [show, setShow] = useState(false);
 
-  if (gone) return null;
-const [show, setShow] = useState(false);
+  // 🌸 Delay before showing
+  useEffect(() => {
+    const t = setTimeout(() => setShow(true), 800);
+    return () => clearTimeout(t);
+  }, []);
 
-useEffect(() => {
-  const t = setTimeout(() => setShow(true), 800); // delay 0.8s
-  return () => clearTimeout(t);
-}, []);
-
-if (!show) return null;
+  // 🌸 If hidden by click OR still waiting, return nothing
+  if (gone || !show) return null;
 
   return (
     <div
@@ -74,9 +74,10 @@ if (!show) return null;
       <div
         className={`
           cursor-pointer transition
-          ${hover
-            ? "animate-[scared-shake_0.3s_linear_infinite]"
-            : "animate-[bounce_1.5s_ease-in-out_infinite]"
+          ${
+            hover
+              ? "animate-[scared-shake_0.3s_linear_infinite]"
+              : "animate-[bounce_1.5s_ease-in-out_infinite]"
           }
         `}
         onMouseEnter={() => setHover(true)}
@@ -86,8 +87,8 @@ if (!show) return null;
         <Image
           src={`${imageBasePath}/chibiyuuki.webp`}
           alt="chibi yuuki"
-          width="110"
-          height="110"
+          width={110}
+          height={110}
           className="rounded-full drop-shadow-xl"
         />
       </div>
