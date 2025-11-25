@@ -6,6 +6,7 @@ import SkillSection from "../public/SkillSection";
 import AboutMe from "../about/AboutMe";
 import Education from "../about/Education";
 import Exprience from "../about/Exprience";
+import { imageBasePath } from "../lib/config";
 
 
 export default function AboutPage() {
@@ -18,7 +19,7 @@ export default function AboutPage() {
         transition={{ duration: 0.6 }}
         className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-16"
       >
-        <AboutMe imageBasePath={""}/>
+        <AboutMe/>
       </motion.div>
 
       {/* 💻 Skills Section */}

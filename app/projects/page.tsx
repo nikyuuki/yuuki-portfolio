@@ -15,7 +15,6 @@ export default function ProjectsPage() {
         My Project
       </h2>
 
-      {/* 🔥 Now 4 columns on large screen */}
       <div className="px-4 md:px-20 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
         <ProjectCard
@@ -40,8 +39,8 @@ export default function ProjectsPage() {
         />
 
         <ProjectCard
-          title="Portfolio Website"
-          description="Modern responsive portfolio with interactive effects."
+          title="Award Istiadat Management System"
+          description="A Ruby on Rails-based Award Management System."
           image={`${imageBasePath}/project3-preview.webp`}
           link="/projects/project3"
         />

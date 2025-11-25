@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { imageBasePath } from "../lib/config";
 
-export default function AboutMe({ imageBasePath }: { imageBasePath: string }) {
+export default function AboutMe() {
   return (
     <section className="w-full py-12 transition-all duration-500">
       <div className="max-w-6xl mx-auto px-6">
@@ -23,11 +25,14 @@ export default function AboutMe({ imageBasePath }: { imageBasePath: string }) {
         >
           {/* Image */}
           <div className="relative flex-shrink-0 w-56 h-72 md:w-64 md:h-80 rounded-3xl overflow-hidden shadow-lg">
-            <img
-              src={`${imageBasePath}/yuuki.webp`}
-              alt="Nik Alyaa portrait"
-              className="object-cover w-full h-full rounded-3xl border-purple-100 dark:border-white/25"
-            />
+              <Image
+                src={`${imageBasePath}/yuuki.webp`}
+                alt="Nik Alyaa portrait"
+                width={208}
+                height={208 }
+                priority
+                className="object-cover w-full h-full"
+              />
           </div>
 
           {/* Text */}
