@@ -60,7 +60,7 @@ export default function AboutMe() {
             </p>
 
             <a
-            href="/nik-alyaa-resume.pdf"
+            href={`${imageBasePath}/nik-alyaa-resume.pdf`}
             download
             className="
               inline-block mt-6 px-6 py-3
