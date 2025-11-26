@@ -73,6 +73,10 @@ export default function ProjectModule({
   overview,
   technologies,
   features,
+  quotes,
+  position,
+  problems,
+  solutions,
 }: {
   title: string;
   subtitle: string;
@@ -81,6 +85,10 @@ export default function ProjectModule({
   overview: string;
   technologies: string[];
   features: string[];
+  quotes?: string;
+  position?: string;
+  problems?: string[];
+  solutions?: string[];
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [zoomed, setZoomed] = useState(false);
@@ -143,7 +151,7 @@ export default function ProjectModule({
           border-l-4 border-purple-300 dark:border-blue-400
           pl-4 md:pl-6 mx-auto max-w-3xl
         ">
-          {`"${overview.slice(0, 120)}..."`}
+          {quotes ? `"${quotes}"` : `"${overview.slice(0, 120)}..."`}
         </blockquote>
       </div>
 
@@ -231,12 +239,46 @@ export default function ProjectModule({
         backdrop-blur-xl shadow-xl
         rounded-2xl p-8 space-y-6
       ">
+        {/* Position */}
+        {position && (
+          <>
+            <h3 className="text-xl font-semibold text-purple-600 dark:text-blue-300">
+              👤 Role / Position
+            </h3>
+            <div className="box-white">
+              <p className="text-gray-700 dark:text-gray-300">{position}</p>
+            </div>
+          </>
+        )}
         <h3 className="text-xl font-semibold text-purple-600 dark:text-blue-300">
           📖 Project Overview
         </h3>
         <div className="box-white" >
          <TypewriterWords text={overview} />
         </div>
+        {/* Problems */}
+        {problems && problems.length > 0 && (
+          <>
+            <h3 className="text-xl font-semibold text-purple-600 dark:text-blue-300">
+              ⚠️ Problems Faced
+            </h3>
+            <div className="box-white">
+              <TypewriterList items={problems} />
+            </div>
+          </>
+        )}
+
+        {/* Solutions */}
+        {solutions && solutions.length > 0 && (
+          <>
+            <h3 className="text-xl font-semibold text-purple-600 dark:text-blue-300">
+              💡 How I Handled It
+            </h3>
+            <div className="box-white">
+              <TypewriterList items={solutions} />
+            </div>
+          </>
+        )}
 
         <h3 className="text-xl font-semibold text-purple-600 dark:text-blue-300">
           🛠 Technologies Used

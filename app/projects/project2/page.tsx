@@ -28,6 +28,20 @@ The system is designed to help emergency responders identify riders instantly an
         "Emergency contact & health info storage",
         "Responsive & mobile-friendly design",
       ]}
+
+      /* NEW FIELDS */
+      quotes="Technology saves lives when information reaches the right hands at the right time."
+      position="Project Manager & Frontend Developer"
+      problems={[
+        "Riders often don’t carry identification or emergency info during accidents",
+        "Needed a fast way for responders to identify a rider with minimal steps",
+        "Front-end had to be extremely simple for police and EMS officers to understand instantly",
+      ]}
+      solutions={[
+        "Introduced QR-based identity cards that store rider info safely and can be accessed immediately by scanning",
+        "Designed a clean, minimal UI focused on speed and clarity for emergency situations",
+        "Built responsive layouts so the system works smoothly on mobile devices used by responders",
+      ]}
     />
   );
 }

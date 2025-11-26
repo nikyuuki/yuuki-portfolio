@@ -77,7 +77,7 @@ return (
     className={`relative min-h-screen overflow-hidden transition-all duration-700 ${
       isDay
 
-        ? "bg-gradient-to-br from-purple-100 via-white to-blue-100 text-gray-800"
+        ? "bg-gradient-to-br from-pink-100 via-white to-blue-100 text-gray-800"
         : "bg-gradient-to-br from-[#0a0f2c] via-[#0f1a44] to-[#1b2a6d] text-gray-100"
     }`}
   >
@@ -112,7 +112,11 @@ return (
   {/* Middle: Desktop Nav */}
   <nav className="hidden md:flex items-center gap-10 font-semibold text-lg">
     {navLinks.map((link) => {
-      const isActive = pathname === link.path;
+      const isActive =
+        link.path === "/projects"
+          ? pathname.startsWith("/projects")
+          : pathname === link.path;
+
 
       const iconMap: Record<string, React.ReactNode> = {
         "/": <Home className="w-7 h-7" />,
@@ -187,7 +191,11 @@ return (
             }`}
           >
             {navLinks.map((link) => {
-              const isActive = pathname === link.path;
+              const isActive =
+                link.path === "/projects"
+                  ? pathname.startsWith("/projects")
+                  : pathname === link.path;
+
 
               const iconMap: Record<string, React.ReactNode> = {
                 "/": <Home className="w-5 h-5" />,

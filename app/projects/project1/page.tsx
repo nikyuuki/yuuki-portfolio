@@ -27,6 +27,17 @@ export default function Project1() {
         "Inventory alert notifications",
         "Responsive & mobile-friendly design",
       ]}
+
+      quotes="Building a system is easy. Building a reliable system takes courage."
+      position="Project Manager & Developer"
+      problems={[
+        "Too many kiosk and staff to manage",
+        "Users struggled to understand the kiosk flow",
+      ]}
+      solutions={[
+        "Build a single centralize Database that show all kiosk, staff and their statuses in one place",
+        "Created a UX flow prototype and simplified user journey",
+      ]}
     />
   );
 }
