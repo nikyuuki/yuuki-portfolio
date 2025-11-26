@@ -58,6 +58,22 @@ export default function AboutMe() {
             <p className="italic text-gray-500 dark:text-gray-400">
               “Every creation is a heartbeat — where logic meets art.” 🌙
             </p>
+
+            <a
+            href="/Nik Alyaa_resume.pdf"
+            download
+            className="
+              inline-block mt-6 px-6 py-3
+              bg-purple-600 hover:bg-purple-700
+              dark:bg-blue-700 dark:hover:bg-blue-600
+              text-white font-semibold
+              rounded-full shadow-lg hover:shadow-xl
+              transition-all duration-300
+            "
+          >
+            📄 Download My CV
+          </a>
+
           </div>
         </motion.div>
       </div>
