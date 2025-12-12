@@ -17,7 +17,7 @@ export default function HeroSection() {
           h-[50vh]
           bg-[#EBD8FF]
           dark:bg-purple-900
-          z-0
+          z-[1]
         "
       />
 
@@ -33,7 +33,7 @@ export default function HeroSection() {
       />
 
       {/* CONTENT */}
-      <div className="relative z-10 flex flex-col items-center justify-center pt-10 pb-10">
+      <div className="relative z-[2] flex flex-col items-center justify-center pt-10 pb-10">
         <div
           className="
             w-[90%] md:w-[80%]

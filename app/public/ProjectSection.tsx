@@ -55,7 +55,7 @@ export default function ProjectSection() {
 
       </div>
       {/* 🌊 Wave Transition */}
-        <div className="relative w-screen left-1/2 -translate-x-1/2 h-32 md:h-44 overflow-hidden -mt-16">
+      <div className="relative w-screen left-1/2 -translate-x-1/2 h-40 md:h-52 overflow-hidden -mt-28">
         <svg
           className="absolute bottom-0 w-full h-full"
           xmlns="http://www.w3.org/2000/svg"

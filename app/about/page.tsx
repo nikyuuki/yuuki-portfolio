@@ -11,7 +11,7 @@ import { imageBasePath } from "../lib/config";
 
 export default function AboutPage() {
   return (
-    <section className="relative w-full overflow-hidden ">
+  <section className="relative w-full overflow-hidden px-4 pb-5 md:px-12 lg:px-24">
     {/* 🌸 Intro Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

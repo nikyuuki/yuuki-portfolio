@@ -82,22 +82,24 @@ return (
     }`}
   >
 
-<header
-  className={`
-    fixed top-0 left-0 right-0 z-50
-    flex items-center justify-between
-    px-6 md:px-12
-    transition-all duration-500
-    rounded-b-3xl backdrop-blur-xl
-    ${isDay ? "bg-[#F8F3FF]/70 text-gray-800" : "bg-[#1C1240]/70 text-gray-200"}
-    ${scrolled ? "py-2" : "py-5"}
-  `}
-  style={{
-    boxShadow: isDay
-      ? "0 4px 12px rgba(173, 137, 255, 0.20)"
-      : "0 4px 14px rgba(147, 197, 253, 0.25)",
-  }}
->
+<header className="fixed top-4 inset-x-0 z-50 flex justify-center">
+  <div
+    className={`
+      w-[92%] md:w-[80%]
+      flex items-center justify-between
+      px-6 md:px-12
+      transition-all duration-500
+      rounded-3xl backdrop-blur-xl
+      ${isDay ? "bg-[#F8F3FF]/70 text-gray-800" : "bg-[#1C1240]/70 text-gray-200"}
+      ${scrolled ? "py-2" : "py-5"}
+    `}
+    style={{
+      boxShadow: isDay
+        ? "0 4px 12px rgba(173, 137, 255, 0.20)"
+        : "0 4px 14px rgba(147, 197, 253, 0.25)",
+    }}
+  >
+
   {/* Left: Logo */}
   <div className="flex items-center gap-3">
     <h1
@@ -172,6 +174,7 @@ return (
     >
       {menuOpen ? <X size={24} /> : <Menu size={24} />}
     </button>
+  </div>
   </div>
 </header>
 

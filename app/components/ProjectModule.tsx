@@ -107,7 +107,7 @@ export default function ProjectModule({
     setCurrentIndex((p) => (p === 0 ? images.length - 1 : p - 1));
 
   return (
-    <section className="max-w-5xl mx-auto pt-20 px-3 md:px-10 space-y-10">
+    <section className="max-w-5xl mx-auto pt-10 px-3 md:px-10 space-y-10">
 
       {/* Breadcrumb */}
       <div className="pt-1 text-sm md:text-base text-gray-700 dark:text-gray-300 mb-2">

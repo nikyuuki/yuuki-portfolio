@@ -40,12 +40,6 @@ export default function Footer() {
           >
             Projects
           </Link>
-          <a
-            href="#contact"
-            className="hover:text-purple-500 dark:hover:text-blue-300 transition-all"
-          >
-            Contact
-          </a>
         </div>
 
         {/* Social Icons */}
